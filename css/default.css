@@ -13,3 +13,40 @@ h1 {
 	color: #FF0000;
 	text-decoration: underline;
 }
+
+ul {
+	list-style-type: none;
+	text-align: center;
+	margin-top: 75px;
+  }
+  
+  .nav a {
+	display: inline-block;
+	margin: 0;
+  }
+  
+  li {
+	display: inline;
+	list-style: none;
+	margin: 0px 30px;
+  }
+  
+  li a {
+	display: block;
+	text-align: center;
+	text-decoration: none;
+	font-size: 30px;
+  }
+  
+  a {
+	text-decoration: none;
+  }
+  
+  a:hover {
+	text-decoration: underline;
+  }
+  
+
+  :any-link {
+	color: #000000;
+   }

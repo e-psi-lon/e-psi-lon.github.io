@@ -7,7 +7,7 @@
         {
             "type": "pwa-chrome",
             "request": "launch",
-            "name": "Lancer chrome",
+            "name": "Test avec Chrome",
             "url": "file:///D:/Github/Mon-site/e-psi-lon.github.io/index.html",
             "webRoot": "${workspaceFolder}"
         }

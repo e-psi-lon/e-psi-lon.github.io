@@ -49,3 +49,6 @@ ul {
   :any-link {
 	color: #000000;
    }
+p {
+	font-size: 20px;
+}

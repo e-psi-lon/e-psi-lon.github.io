@@ -5,6 +5,13 @@
     "version": "0.2.0",
     "configurations": [
         {
+            "name": "Test avec Edge",
+            "request": "launch",
+            "type": "pwa-msedge",
+            "url": "file:///D:/Github/Mon-site/e-psi-lon.github.io/index.html",
+            "webRoot": "${workspaceFolder}"
+        },
+        {
             "type": "pwa-chrome",
             "request": "launch",
             "name": "Test avec Chrome",

@@ -9,12 +9,15 @@ import com.varabyte.kobweb.silk.style.toModifier
 
 val buttonBarStyle = CssStyle {
     Modifier.apply {
-        
+
     }
 }
 
+@Composable
 fun ButtonBar(content: @Composable () -> Unit) {
     Box(buttonBarStyle.toModifier()) {
         content()
     }
 }
+
+

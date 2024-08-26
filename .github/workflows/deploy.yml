@@ -33,7 +33,7 @@ jobs:
       run: |
         source "$HOME/.sdkman/bin/sdkman-init.sh"
         cd main/site
-        kobweb export --layout static
+        kobweb export --notty --layout static 
 
     - name: Checkout build branch
       uses: actions/checkout@v3

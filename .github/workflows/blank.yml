@@ -1,0 +1,59 @@
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout main branch
+      uses: actions/checkout@v3
+      with:
+        path: main
+
+    - name: Set up Java 21
+      uses: actions/setup-java@v3
+      with:
+        distribution: 'temurin'
+        java-version: '21'
+
+    - name: Install SDKMAN!
+      run: curl -s "https://get.sdkman.io" | bash
+
+    - name: Install Kobweb via SDKMAN!
+      run: |
+        source "$HOME/.sdkman/bin/sdkman-init.sh"
+        sdk install kobweb
+
+    - name: Export site with Kobweb
+      run: |
+        source "$HOME/.sdkman/bin/sdkman-init.sh"
+        cd main/site
+        kobweb export --layout static
+
+    - name: Checkout build branch
+      uses: actions/checkout@v3
+      with:
+        ref: build
+        path: build
+
+    - name: Clean build branch
+      run: |
+        cd build
+        rm -rf .
+
+    - name: Move exported files to build branch
+      run: |
+        mv main/docs/* build/
+        rm -rf main/docs
+
+    - name: Commit and push changes
+      run: |
+        cd build
+        git add .
+        git commit -m "Update GitHub Pages site"
+        git push origin build

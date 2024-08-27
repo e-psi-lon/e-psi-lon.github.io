@@ -43,8 +43,12 @@ jobs:
 
     - name: Clean build branch
       run: |
-        cd build
-        rm -rf .
+        cd build        
+        for file in ./*; do
+          if [ "$file" != ".git" ]; then
+            rm -rf "$file"
+          fi
+        done
 
     - name: Move exported files to build branch
       run: |

@@ -9,6 +9,6 @@ server:
       api: "build/libs/website.jar"
     prod:
       script: "build/kotlin-webpack/js/productionExecutable/website.js"
-      siteRoot: "../docs"
+      siteRoot: "../../build"
 
   port: 8080

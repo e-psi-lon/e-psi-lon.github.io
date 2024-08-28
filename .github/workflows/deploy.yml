@@ -15,6 +15,21 @@ jobs:
       with:
         path: main
 
+    - name: Checkout build branch
+      uses: actions/checkout@v3
+      with:
+        ref: build
+        path: build
+
+    - name: Clean build branch
+      run: |
+        cd build        
+        for file in ./*; do
+          if [ "$file" != ".git" ]; then
+            rm -rf "$file"
+          fi
+        done
+
     - name: Set up Java 21
       uses: actions/setup-java@v3
       with:
@@ -34,26 +49,6 @@ jobs:
         source "$HOME/.sdkman/bin/sdkman-init.sh"
         cd main/site
         kobweb export --notty --layout static 
-
-    - name: Checkout build branch
-      uses: actions/checkout@v3
-      with:
-        ref: build
-        path: build
-
-    - name: Clean build branch
-      run: |
-        cd build        
-        for file in ./*; do
-          if [ "$file" != ".git" ]; then
-            rm -rf "$file"
-          fi
-        done
-
-    - name: Move exported files to build branch
-      run: |
-        mv main/docs/* build/
-        rm -rf main/docs
 
     - name: Commit and push changes
       run: |

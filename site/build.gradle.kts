@@ -1,4 +1,9 @@
 import com.varabyte.kobweb.gradle.application.util.configAsKobwebApplication
+import com.varabyte.kobweb.project.conf.KobwebConfFile
+import kotlin.io.path.Path
+import kotlin.io.path.createFile
+import kotlin.io.path.writeText
+import com.varabyte.kobweb.gradle.application.kobwebFolder
 
 plugins {
     alias(libs.plugins.kotlin.multiplatform)
@@ -38,4 +43,25 @@ kotlin {
             
         }
     }
+}
+
+// Une task nommee createCNAME
+tasks.register("createCNAME") {
+    doLast {
+        val kobwebConfFile = KobwebConfFile(kobwebFolder)
+        val siteRoot = kobwebConfFile.content?.server?.files?.prod?.siteRoot
+        println(siteRoot)
+        if (siteRoot != null) {
+            val projectDir = project.projectDir.toPath()
+            val siteRootPath = projectDir.resolve(siteRoot)
+            println(siteRootPath)
+            val cnameFile = siteRootPath.resolve("CNAME")
+            cnameFile.createFile()
+            cnameFile.writeText("e-psi-lon.me")
+        }
+    }
+}
+
+tasks.named("kobwebExport") {
+    this.finalizedBy("createCNAME")
 }

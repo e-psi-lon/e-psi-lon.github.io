@@ -70,7 +70,11 @@ jobs:
           ../kobweb-${{ env.KOBWEB_CLI_VERSION }}/bin/kobweb export --notty --layout static
 
       - name: Check if site is generated
-        run: test -d site/.kobweb/site
+        run: |
+          cd site 
+          ls
+          ls .kobweb
+          ls .kobweb/site
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3

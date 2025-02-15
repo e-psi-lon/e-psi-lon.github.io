@@ -1,6 +1,5 @@
 import com.varabyte.kobweb.gradle.application.util.configAsKobwebApplication
 import com.varabyte.kobweb.project.conf.KobwebConfFile
-import kotlin.io.path.Path
 import kotlin.io.path.createFile
 import kotlin.io.path.writeText
 import com.varabyte.kobweb.gradle.application.kobwebFolder
